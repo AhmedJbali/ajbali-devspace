@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid overflow-hidden">
+  <div class="container-fluid main-wrapper">
     <div class="row g-0">
       <!-- Partie gauche avec photo + infos -->
       <aside class="col-md-3 col-lg-2 profile-sidebar">
@@ -22,86 +22,72 @@
 
       <!-- Partie droite : contenu principal + menu -->
       <main class="col-md-9 col-lg-10 main-content">
-        <div class="row g-0">
-          <div class="col-12 px-3">
-            <section
-              id="profile"
-              class="section fade-in-section"
-              ref="profileSection"
-            >
-              <h2 class="section-title">Profil</h2>
-              <p>
-                Développeur Full Stack depuis 3 ans, dédié à la création d'applications web robustes et évolutives.
-                Passionné par les nouvelles technologies, je perfectionne constamment mes compétences pour contribuer à
-                des projets innovants grâce à ma détermination et ma créativité.
-              </p>
-            </section>
-          </div>
+        <div class="content-wrapper">
+          <div class="row g-0">
+            <div class="col-12 px-3">
+              <section id="profile" class="section fade-in-section" ref="profileSection">
+                <h2 class="section-title">Profil</h2>
+                <p>
+                  Développeur Full Stack depuis 3 ans, dédié à la création d'applications web robustes et évolutives.
+                  Passionné par les nouvelles technologies, je perfectionne constamment mes compétences pour contribuer à
+                  des projets innovants grâce à ma détermination et ma créativité.
+                </p>
+              </section>
+            </div>
 
-          <div class="col-12 px-3">
-            <section
-              id="experience"
-              class="section resume-area fade-in-section"
-              ref="experienceSection"
-            >
-              <h2 class="section-title">Expérience Professionnelle</h2>
-              <div class="resume-content">
-                <div class="resume-timeline">
-                  <div
-                    class="item"
-                    v-for="(exp, index) in experiences"
-                    :key="index"
-                    :class="index % 2 === 0 ? 'slide-from-left' : 'slide-from-right'"
-                  >
-                    <h3>{{ exp.title }}</h3>
-                    <p><em>{{ exp.date }}</em></p>
-                    <ul>
-                      <li v-for="(point, idx) in exp.details" :key="idx">{{ point }}</li>
-                    </ul>
+            <div class="col-12 px-3">
+              <section id="experience" class="section resume-area fade-in-section" ref="experienceSection">
+                <h2 class="section-title">Expérience Professionnelle</h2>
+                <div class="resume-content">
+                  <div class="resume-timeline">
+                    <div
+                      class="item"
+                      v-for="(exp, index) in experiences"
+                      :key="index"
+                      :class="index % 2 === 0 ? 'slide-from-left' : 'slide-from-right'"
+                    >
+                      <h3>{{ exp.title }}</h3>
+                      <p><em>{{ exp.date }}</em></p>
+                      <ul>
+                        <li v-for="(point, idx) in exp.details" :key="idx">{{ point }}</li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </section>
-          </div>
+              </section>
+            </div>
 
-          <div class="col-12 px-3">
-            <section
-              id="projects"
-              class="section fade-in-section"
-              ref="projectsSection"
-            >
-              <h2 class="section-title">Projets Professionnels</h2>
-              <p>
-                 Environnements : VueJS, Laravel, vue-router, Laravel-mix, Html, Css, Sass, REST API <br>
-                Gestion des commandes avec VueJS, Laravel, REST API. Création d'une application moderne et responsive
-                avec gestion des articles, panier, validation et suivi des commandes.
-              </p>
-            </section>
-          </div>
+            <div class="col-12 px-3">
+              <section id="projects" class="section fade-in-section" ref="projectsSection">
+                <h2 class="section-title">Projets Professionnels</h2>
+                <p>
+                  Environnements : VueJS, Laravel, vue-router, Laravel-mix, Html, Css, Sass, REST API <br>
+                  Gestion des commandes avec VueJS, Laravel, REST API. Création d'une application moderne et responsive
+                  avec gestion des articles, panier, validation et suivi des commandes.
+                </p>
+              </section>
+            </div>
 
-          <div class="col-12 px-3">
-            <section
-              id="skills"
-              class="section fade-in-section"
-              ref="skillsSection"
-            >
-              <h2 class="section-title">Compétences</h2>
-              <div class="row skills-list g-3 mx-0">
-                <div 
-                  class="col-6 col-sm-4 col-md-3 col-lg-2"
-                  v-for="(skill, idx) in skills" 
-                  :key="idx"
-                >
-                  <li class="skill-item">
-                    <div class="skill-icon-circle">
-                      <!-- Icône Devicon -->
-                      <i :class="skill.iconClass" class="skill-icon"></i>
-                    </div>
-                    <span class="skill-name">{{ skill.name }}</span>
-                  </li>
+            <div class="col-12 px-3">
+              <section id="skills" class="section fade-in-section" ref="skillsSection">
+                <h2 class="section-title">Compétences</h2>
+                <div class="row skills-list g-3 mx-0">
+                  <div 
+                    class="col-6 col-sm-4 col-md-3 col-lg-2"
+                    v-for="(skill, idx) in skills" 
+                    :key="idx"
+                  >
+                    <li class="skill-item">
+                      <div class="skill-icon-circle">
+                        <!-- Icône Devicon -->
+                        <i :class="skill.iconClass" class="skill-icon"></i>
+                      </div>
+                      <span class="skill-name">{{ skill.name }}</span>
+                    </li>
+                  </div>
                 </div>
-              </div>
-            </section>
+              </section>
+            </div>
           </div>
         </div>
       </main>
@@ -217,21 +203,12 @@ export default {
 @import url('https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css');
 @import url('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css');
 
-/* Suppression des scrollbars */
-html, body {
-  overflow: hidden;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-.container-fluid {
+/* Structure principale */
+.main-wrapper {
   height: 100vh;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #0f172a;
   color: #cbd5e1;
-  padding: 0;
   overflow: hidden;
 }
 
@@ -241,12 +218,12 @@ html, body {
   padding: 40px 0;
   height: 100vh;
   overflow-y: auto;
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .profile-sidebar::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  display: none;
 }
 
 .profile-image {
@@ -297,16 +274,21 @@ html, body {
 
 /* Contenu principal */
 .main-content {
-  padding: 40px 15px;
+  padding: 0;
   height: 100vh;
-  overflow-y: auto;
   position: relative;
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
 }
 
-.main-content::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+.content-wrapper {
+  height: 100%;
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  padding: 40px 15px;
+}
+
+.content-wrapper::-webkit-scrollbar {
+  display: none;
 }
 
 /* Sections */
@@ -490,13 +472,29 @@ html, body {
 
 /* Responsive adjustments */
 @media (max-width: 767.98px) {
-  .profile-sidebar {
+  .main-wrapper {
     height: auto;
+    min-height: 100vh;
+    overflow: visible;
+  }
+  
+  .profile-sidebar, .main-content {
+    height: auto;
+    width: 100%;
+  }
+  
+  .profile-sidebar {
     padding: 20px;
+    position: relative;
   }
   
   .main-content {
+    padding: 0;
+  }
+  
+  .content-wrapper {
     height: auto;
+    overflow: visible;
     padding: 20px;
   }
 
@@ -513,14 +511,18 @@ html, body {
     font-size: 36px;
   }
 
-  #skills {
-    margin-bottom: 240px;
+  #skills, #experience {
+    margin-bottom: 140px;
+  }
+
+  .side-menu {
+    display: none;
   }
 }
 
 @media (min-width: 768px) and (max-width: 1026.98px) {
   #skills {
-    margin-bottom: 560px;
+    margin-bottom: 40px;
   }
 }
 </style>
