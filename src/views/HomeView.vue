@@ -1,13 +1,13 @@
 <template>
-  <div class="container-fluid">
-    <div class="row">
+  <div class="container-fluid overflow-hidden">
+    <div class="row g-0">
       <!-- Partie gauche avec photo + infos -->
       <aside class="col-md-3 col-lg-2 profile-sidebar">
-        <div class="row">
+        <div class="row g-0">
           <div class="col-12 text-center">
             <img src="@/assets/profile.jpg" alt="Ahmed Jbali" class="profile-image img-fluid" />
           </div>
-          <div class="col-12 contact-info">
+          <div class="col-12 contact-info px-3">
             <p><strong>Email:</strong>ahmedjbali86@gmail.com</p>
             <p><strong>Téléphone:</strong> +216 52 419 334</p>
             <p><strong>LinkedIn:</strong>
@@ -15,15 +15,15 @@
                 linkedin.com/in/ahmedjbali
               </a>
             </p>
-            <button @click="downloadCV" class="download-btn btn">Télécharger CV PDF</button>
+            <button @click="downloadCV" class="download-btn btn w-100">Télécharger CV PDF</button>
           </div>
         </div>
       </aside>
 
       <!-- Partie droite : contenu principal + menu -->
       <main class="col-md-9 col-lg-10 main-content">
-        <div class="row">
-          <div class="col-12">
+        <div class="row g-0">
+          <div class="col-12 px-3">
             <section
               id="profile"
               class="section fade-in-section"
@@ -38,7 +38,7 @@
             </section>
           </div>
 
-          <div class="col-12">
+          <div class="col-12 px-3">
             <section
               id="experience"
               class="section resume-area fade-in-section"
@@ -64,7 +64,7 @@
             </section>
           </div>
 
-          <div class="col-12">
+          <div class="col-12 px-3">
             <section
               id="projects"
               class="section fade-in-section"
@@ -72,20 +72,21 @@
             >
               <h2 class="section-title">Projets Professionnels</h2>
               <p>
+                 Environnements : VueJS, Laravel, vue-router, Laravel-mix, Html, Css, Sass, REST API <br>
                 Gestion des commandes avec VueJS, Laravel, REST API. Création d'une application moderne et responsive
                 avec gestion des articles, panier, validation et suivi des commandes.
               </p>
             </section>
           </div>
 
-          <div class="col-12">
+          <div class="col-12 px-3">
             <section
               id="skills"
               class="section fade-in-section"
               ref="skillsSection"
             >
               <h2 class="section-title">Compétences</h2>
-              <div class="row skills-list">
+              <div class="row skills-list g-3 mx-0">
                 <div 
                   class="col-6 col-sm-4 col-md-3 col-lg-2"
                   v-for="(skill, idx) in skills" 
@@ -184,13 +185,12 @@ export default {
           if (entry.isIntersecting) {
             entry.target.classList.add("is-visible");
 
-            // Animation expérience avec delay en cascade
             if (entry.target.id === "experience") {
               const items = entry.target.querySelectorAll(".item");
               items.forEach((item, idx) => {
                 setTimeout(() => {
                   item.classList.add("visible");
-                }, idx * 300); // délai entre chaque item (300ms)
+                }, idx * 300);
               });
             }
           }
@@ -201,14 +201,13 @@ export default {
     sections.forEach((sec) => observer.observe(sec));
   },
   methods: {
-downloadCV() {
-  const url = "/ajbali-devspace/cv/Ahmed_Jbali_CV.pdf";
-  const link = document.createElement("a");
-  link.href = url;
-  link.download = "Ahmed_Jbali_CV.pdf";
-  link.click();
-}
-
+    downloadCV() {
+      const url = "/ajbali-devspace/cv/Ahmed_Jbali_CV.pdf";
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "Ahmed_Jbali_CV.pdf";
+      link.click();
+    }
   }
 };
 </script>
@@ -218,21 +217,36 @@ downloadCV() {
 @import url('https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css');
 @import url('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css');
 
-/* Container principal */
+/* Suppression des scrollbars */
+html, body {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 .container-fluid {
   height: 100vh;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #0f172a;
   color: #cbd5e1;
   padding: 0;
+  overflow: hidden;
 }
 
 /* Sidebar gauche */
 .profile-sidebar {
   background-color: #1e293b;
-  padding: 40px 20px;
+  padding: 40px 0;
   height: 100vh;
   overflow-y: auto;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.profile-sidebar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }
 
 .profile-image {
@@ -241,10 +255,12 @@ downloadCV() {
   border-radius: 50%;
   object-fit: contain;
   border: 3px solid #22c55e;
+  margin-bottom: 20px;
 }
 
 .contact-info {
   width: 100%;
+  padding: 0 15px;
 }
 
 .contact-info p {
@@ -273,7 +289,6 @@ downloadCV() {
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.3s;
-  width: 100%;
 }
 
 .download-btn:hover {
@@ -282,10 +297,16 @@ downloadCV() {
 
 /* Contenu principal */
 .main-content {
-  padding: 40px;
+  padding: 40px 15px;
   height: 100vh;
   overflow-y: auto;
   position: relative;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.main-content::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }
 
 /* Sections */
@@ -385,6 +406,7 @@ downloadCV() {
 .skills-list {
   list-style: none;
   padding-left: 0;
+  margin: 0;
 }
 
 .skill-item {
@@ -392,6 +414,7 @@ downloadCV() {
   color: #aab2bd;
   font-weight: 600;
   margin-bottom: 20px;
+  padding: 0 5px;
 }
 
 .skill-icon-circle {
@@ -461,40 +484,24 @@ downloadCV() {
   color: white;
 }
 
-/* Scroll smooth */
-html {
-  scroll-behavior: smooth;
-}
 .devicon.colored {
   color: inherit !important;
 }
 
-.skill-icon {
-  font-size: 48px;
-  /* Retirer color: #22c55e; car la couleur est maintenant gérée inline */
-}
 /* Responsive adjustments */
 @media (max-width: 767.98px) {
   .profile-sidebar {
     height: auto;
     padding: 20px;
-    background-color: #1e293b;
   }
   
   .main-content {
     height: auto;
     padding: 20px;
-    background-color: #1e293b;
   }
 
- #skills {
-  margin-bottom: 240px;
-}
-
-  
   .section-title {
     font-size: 1.8rem;
-    background-color: #1e293b;
   }
   
   .skill-icon-circle {
@@ -504,6 +511,10 @@ html {
   
   .skill-icon {
     font-size: 36px;
+  }
+
+  #skills {
+    margin-bottom: 240px;
   }
 }
 
