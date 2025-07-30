@@ -1,96 +1,120 @@
 <template>
-  <div class="container">
-    <!-- Partie gauche avec photo + infos -->
-    <aside class="profile-sidebar">
-      <img src="@/assets/profile.jpg" alt="Ahmed Jbali" class="profile-image" />
-      <div class="contact-info">
-        <p><strong>Email:</strong> ahmedjbali@example.com</p>
-        <p><strong>Téléphone:</strong> +216 123 456 789</p>
-        <p><strong>LinkedIn:</strong>
-          <a href="https://www.linkedin.com/in/ahmed-jbali-a8508319b/" target="_blank" rel="noopener noreferrer">
-            linkedin.com/in/ahmedjbali
-          </a>
-        </p>
-        <button @click="downloadCV" class="download-btn">Télécharger CV PDF</button>
-      </div>
-    </aside>
-
-    <!-- Partie droite : contenu principal + menu -->
-    <main class="main-content">
-      <section
-        id="profile"
-        class="section fade-in-section"
-        ref="profileSection"
-      >
-        <h2 class="section-title">Profil</h2>
-        <p>
-          Développeur Full Stack depuis 3 ans, dédié à la création d’applications web robustes et évolutives.
-          Passionné par les nouvelles technologies, je perfectionne constamment mes compétences pour contribuer à
-          des projets innovants grâce à ma détermination et ma créativité.
-        </p>
-      </section>
-
-      <section
-        id="experience"
-        class="section resume-area fade-in-section"
-        ref="experienceSection"
-      >
-        <h2 class="section-title">Expérience Professionnelle</h2>
-        <div class="resume-content">
-          <div class="resume-timeline">
-            <div
-              class="item"
-              v-for="(exp, index) in experiences"
-              :key="index"
-              :class="index % 2 === 0 ? 'slide-from-left' : 'slide-from-right'"
-            >
-              <h3>{{ exp.title }}</h3>
-              <p><em>{{ exp.date }}</em></p>
-              <ul>
-                <li v-for="(point, idx) in exp.details" :key="idx">{{ point }}</li>
-              </ul>
-            </div>
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Partie gauche avec photo + infos -->
+      <aside class="col-md-3 col-lg-2 profile-sidebar">
+        <div class="row">
+          <div class="col-12 text-center">
+            <img src="@/assets/profile.jpg" alt="Ahmed Jbali" class="profile-image img-fluid" />
+          </div>
+          <div class="col-12 contact-info">
+            <p><strong>Email:</strong>ahmedjbali86@gmail.com</p>
+            <p><strong>Téléphone:</strong> +216 52 419 334</p>
+            <p><strong>LinkedIn:</strong>
+              <a href="https://www.linkedin.com/in/ahmed-jbali-a8508319b/" target="_blank" rel="noopener noreferrer">
+                linkedin.com/in/ahmedjbali
+              </a>
+            </p>
+            <button @click="downloadCV" class="download-btn btn">Télécharger CV PDF</button>
           </div>
         </div>
-      </section>
-      <section
-        id="projects"
-        class="section fade-in-section"
-        ref="projectsSection"
-      >
-        <h2 class="section-title">Projets Professionnels</h2>
-        <p>
-          Gestion des commandes avec VueJS, Laravel, REST API. Création d’une application moderne et responsive
-          avec gestion des articles, panier, validation et suivi des commandes.
-        </p>
-      </section>
-      <section
-        id="skills"
-        class="section fade-in-section"
-        ref="skillsSection"
-      >
-        <h2 class="section-title">Compétences</h2>
-        <ul class="skills-list">
-          <li v-for="(skill, idx) in skills" :key="idx" class="skill-item">
-            <div class="skill-icon-circle">
-              <!-- Icône Devicon -->
-              <i :class="skill.iconClass" class="skill-icon"></i>
-            </div>
-            <span class="skill-name">{{ skill.name }}</span>
-          </li>
-        </ul>
-      </section>
-    </main>
+      </aside>
 
-    <!-- Menu fixe à droite -->
-    <nav class="side-menu">
-      <ul>
-        <li><a href="#profile" title="Profil"><i class="las la-user"></i></a></li>
-        <li><a href="#experience" title="Expérience"><i class="las la-briefcase"></i></a></li>
-        <li><a href="#skills" title="Compétences"><i class="las la-shapes"></i></a></li>
-        <li><a href="#projects" title="Projets"><i class="las la-stream"></i></a></li>
-      </ul>
-    </nav>
+      <!-- Partie droite : contenu principal + menu -->
+      <main class="col-md-9 col-lg-10 main-content">
+        <div class="row">
+          <div class="col-12">
+            <section
+              id="profile"
+              class="section fade-in-section"
+              ref="profileSection"
+            >
+              <h2 class="section-title">Profil</h2>
+              <p>
+                Développeur Full Stack depuis 3 ans, dédié à la création d'applications web robustes et évolutives.
+                Passionné par les nouvelles technologies, je perfectionne constamment mes compétences pour contribuer à
+                des projets innovants grâce à ma détermination et ma créativité.
+              </p>
+            </section>
+          </div>
+
+          <div class="col-12">
+            <section
+              id="experience"
+              class="section resume-area fade-in-section"
+              ref="experienceSection"
+            >
+              <h2 class="section-title">Expérience Professionnelle</h2>
+              <div class="resume-content">
+                <div class="resume-timeline">
+                  <div
+                    class="item"
+                    v-for="(exp, index) in experiences"
+                    :key="index"
+                    :class="index % 2 === 0 ? 'slide-from-left' : 'slide-from-right'"
+                  >
+                    <h3>{{ exp.title }}</h3>
+                    <p><em>{{ exp.date }}</em></p>
+                    <ul>
+                      <li v-for="(point, idx) in exp.details" :key="idx">{{ point }}</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <div class="col-12">
+            <section
+              id="projects"
+              class="section fade-in-section"
+              ref="projectsSection"
+            >
+              <h2 class="section-title">Projets Professionnels</h2>
+              <p>
+                Gestion des commandes avec VueJS, Laravel, REST API. Création d'une application moderne et responsive
+                avec gestion des articles, panier, validation et suivi des commandes.
+              </p>
+            </section>
+          </div>
+
+          <div class="col-12">
+            <section
+              id="skills"
+              class="section fade-in-section"
+              ref="skillsSection"
+            >
+              <h2 class="section-title">Compétences</h2>
+              <div class="row skills-list">
+                <div 
+                  class="col-6 col-sm-4 col-md-3 col-lg-2"
+                  v-for="(skill, idx) in skills" 
+                  :key="idx"
+                >
+                  <li class="skill-item">
+                    <div class="skill-icon-circle">
+                      <!-- Icône Devicon -->
+                      <i :class="skill.iconClass" class="skill-icon"></i>
+                    </div>
+                    <span class="skill-name">{{ skill.name }}</span>
+                  </li>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </main>
+
+      <!-- Menu fixe à droite -->
+      <nav class="side-menu">
+        <ul>
+          <li><a href="#profile" title="Profil"><i class="las la-user"></i></a></li>
+          <li><a href="#experience" title="Expérience"><i class="las la-briefcase"></i></a></li>
+          <li><a href="#projects" title="Projets"><i class="las la-stream"></i></a></li>
+          <li><a href="#skills" title="Compétences"><i class="las la-shapes"></i></a></li>
+        </ul>
+      </nav>
+    </div>
   </div>
 </template>
 
@@ -104,7 +128,7 @@ export default {
           title: "Développeur Full Stack - Eventizer",
           date: "Août 2022 – Mars 2025",
           details: [
-            "Développement full stack d’applications web avec Angular et Laravel.",
+            "Développement full stack d'applications web avec Angular et Laravel.",
             "Optimisation des performances, validation technique, debugging efficace.",
             "Méthodologie Agile (Scrum) : daily, sprint planning, retrospective."
           ]
@@ -115,14 +139,14 @@ export default {
           details: [
             "Déploiement de projets WordPress sur serveur Plesk.",
             "Création de modules dynamiques, automatisations et export de données.",
-            "Conception d’interfaces responsive et pages multimédia."
+            "Conception d'interfaces responsive et pages multimédia."
           ]
         },
         {
           title: "Stagiaire - Lasser informatique",
           date: "Février 2020 – Juin 2020",
           details: [
-            "Développement d’une application pharmaceutique ASP.NET avec Laravel.",
+            "Développement d'une application pharmaceutique ASP.NET avec Laravel.",
             "Intégration template responsive, connexion à base SQL Server."
           ]
         },
@@ -130,7 +154,7 @@ export default {
           title: "Stagiaire - KeyObject",
           date: "Août 2019 – Septembre 2019",
           details: [
-            "Développement d’une application web ASP.NET pour gestion bibliothèque en ligne."
+            "Développement d'une application web ASP.NET pour gestion bibliothèque en ligne."
           ]
         }
       ],
@@ -177,42 +201,38 @@ export default {
     sections.forEach((sec) => observer.observe(sec));
   },
   methods: {
-    downloadCV() {
-  const url = "/cv/Ahmed_Jbali_CV.pdf";
+downloadCV() {
+  const url = "/ajbali-devspace/cv/Ahmed_Jbali_CV.pdf";
   const link = document.createElement("a");
   link.href = url;
   link.download = "Ahmed_Jbali_CV.pdf";
   link.click();
 }
+
   }
 };
 </script>
 
 <style scoped>
 @import url("https://cdn.jsdelivr.net/npm/line-awesome@1.3.0/dist/line-awesome/css/line-awesome.min.css");
-
-/* Import du style Devicon */
 @import url('https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css');
+@import url('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css');
 
 /* Container principal */
-.container {
-  display: flex;
+.container-fluid {
   height: 100vh;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #0f172a;
   color: #cbd5e1;
+  padding: 0;
 }
 
 /* Sidebar gauche */
 .profile-sidebar {
-  width: 300px;
   background-color: #1e293b;
   padding: 40px 20px;
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
+  height: 100vh;
+  overflow-y: auto;
 }
 
 .profile-image {
@@ -262,10 +282,8 @@ export default {
 
 /* Contenu principal */
 .main-content {
-  flex-grow: 1;
-  margin-left: 40px;
-  padding: 40px 60px 40px 40px;
-  padding-right: 220px; /* pour ne pas chevaucher menu */
+  padding: 40px;
+  height: 100vh;
   overflow-y: auto;
   position: relative;
 }
@@ -304,8 +322,6 @@ export default {
   position: relative;
   margin-bottom: 32px;
   padding-left: 12px;
-
-  /* Départ caché */
   opacity: 0;
   transform: translateX(0);
   transition: none;
@@ -365,20 +381,17 @@ export default {
   }
 }
 
-/* Liste compétences en cercles */
+/* Liste compétences */
 .skills-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
   list-style: none;
   padding-left: 0;
 }
 
 .skill-item {
-  width: 100px;
   text-align: center;
   color: #aab2bd;
   font-weight: 600;
+  margin-bottom: 20px;
 }
 
 .skill-icon-circle {
@@ -451,5 +464,52 @@ export default {
 /* Scroll smooth */
 html {
   scroll-behavior: smooth;
+}
+.devicon.colored {
+  color: inherit !important;
+}
+
+.skill-icon {
+  font-size: 48px;
+  /* Retirer color: #22c55e; car la couleur est maintenant gérée inline */
+}
+/* Responsive adjustments */
+@media (max-width: 767.98px) {
+  .profile-sidebar {
+    height: auto;
+    padding: 20px;
+    background-color: #1e293b;
+  }
+  
+  .main-content {
+    height: auto;
+    padding: 20px;
+    background-color: #1e293b;
+  }
+
+ #skills {
+  margin-bottom: 240px;
+}
+
+  
+  .section-title {
+    font-size: 1.8rem;
+    background-color: #1e293b;
+  }
+  
+  .skill-icon-circle {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .skill-icon {
+    font-size: 36px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1026.98px) {
+  #skills {
+    margin-bottom: 560px;
+  }
 }
 </style>
